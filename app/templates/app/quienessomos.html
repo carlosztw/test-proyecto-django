@@ -1,0 +1,84 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block contenido %}
+<div class="container-fluid">
+    <!-- ROW para hacer una separación en 3 secciones de la web-->
+    <div class="row">
+        <div class="d-none d-sm-block col-md-3 col-lg-3">
+
+        </div>  
+        <div class="col-sm-12 col-md-6 col-lg-6">  
+            <!-- CONTENIDO DE QUIENES SOMOS-->    
+            <section style="position: relative;">
+                    <!-- DIV CON LOGO DE LA EMPRESA -->    
+                    <div style="background-color: rgb(23, 146, 23); border-radius: 30px; margin-bottom: 5%; margin-top: 5%;"><img src="{% static 'app/img/logo1.png' %}" height="120px" alt="" style="display: block; margin: 0 auto; max-width: 100%;"></div>
+
+                <!-- DIV CON LA SECCION CONOCENOS-->     
+                <div class="row">
+                    <div class="col-sm-12" style="margin-left: -140;">
+
+                        <h1 class="lines-effect" id="linea"></h1>
+                        <h3 style="text-align: left;font-family: 'Helvetica', sans-serif; font-size: 45px;">Conócenos</h3>
+
+                        <p style=" color: black; font-size: larger;">Somos una empresa que le da valor agregado a nuestros clientes. Proponemos los mejores viveres para el que hacer rutinario, productos o servicios fundamentales en la mesa de nuestros vecinos. Queremos atender de la mejor manera
+                            a quienes requieren de nuestros servicios con un equipo de excelencia en la recepcion de clientes y con principios claros y definidos.</p>
+
+
+
+                    </div>
+                    <!-- DIV CON LA SECCION MISION Y VISION-->    
+                    <div class="misionvision" style="background: url('/static/app/img/fondo_2.jpg'); margin-top: 30px;">
+                        <div class="row">
+                            <div class="col-sm-6" style="margin-left: 7%;">
+                                <h1 style="text-align: center; color: white;">Misión</h1>
+                                <p style="color: white;">Ser una empresa innovadora en productos y servicios de viveres, siendo destacados por la excelencia de nuestro trabajo, el valor agregado para nuestros clientes, basados en el compromiso con su bienestar y atención.</p>
+                            </div>
+                            <div class="col-sm-4" style="margin-left: 50px;">
+                                <h1 style="text-align: center;color: white;">Visión</h1>
+                                <p style="color: white;"> Proveer servicios y productos de viveres basicos por sobre las expectativas de los clientes en calidad y atención. Asimismo, potenciamos el crecimiento sostenido de la empresa y el desarrollo profesional de los colaboradores.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="finalmente" style="margin-bottom: 5%;">
+                        <h1 style="margin-top: 40px; text-align: center; font-family: 'Helvetica', sans-serif; font-size: 100px;">Valores</h1>
+                        <h1 class="lines-effect" id="linea"></h1>
+                        <h2 style="text-align: center;">Nuestros principales valores reflejan el quehacer que diariamente realizan nuestros equipos de trabajo en los diversos procesos para con nuestros clientes</h2>
+                        <div class="row">
+                            <div class="col-sm-5" style="margin-left: auto; margin-right: auto;">
+                                <img src="{% static 'app/img/transparencia.png' %}" width="50px" height="50px" style="display: block; margin-left: auto; margin-right: auto; margin-top: 20px;">
+                                <h1 style="text-align: center;">Transparencia</h1>
+                                <p style="text-align: center;">La honestidad es un elemento fundamental en las relaciones laborales que tenemos con nuestros clientes y colaboradores.
+
+                                </p>
+                            </div>
+                            <div class=" col-sm-5" style="margin-left: auto; margin-right: auto;">
+                                <img src="{% static 'app/img/aprobacion.png' %}" width="50px" height="50px" style="display: block; margin-left: auto; margin-right: auto; margin-top: 20px;">
+                                <h1 style="text-align: center;">Confianza</h1>
+                                <p style="text-align: center;">Nuestros productos pasan por un control de calidad exaustivo y siguiendo todos los protocolos normativos.
+
+                                </p>
+                            </div>
+                            <div class=" col-sm-5" style="margin-left: auto; margin-right: auto;">
+                                <img src="{% static 'app/img/calidad-premium.png' %}" width="50px" height="50px" style="display: block; margin-left: auto; margin-right: auto; margin-top: 20px;">
+                                <h1 style="text-align: center;">Calidad</h1>
+                                <p style="text-align: center;">Todo lo que proponemos y realizamos lo desarrollamos con la máxima dedicación y ocupación, otorgando un sello de calidad que nos distingue en el mercado.
+
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+        </div> 
+        <div class="d-none d-sm-block col-md-3 col-lg-3">
+            
+        </div>  
+    </div>
+</div>
+{% endblock %}

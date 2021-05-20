@@ -1,0 +1,24 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block contenido %}
+<div class="container-fluid ">
+    <!-- ROW para hacer una separación en 2 secciones-->
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+
+        <!-- PRODUCTOS -->
+        <div class="col-10 contenedor-productos">
+            {% for aux in listaProductos %}
+            <div class="producto border">
+                <h1>{{ aux.nombre }}</h1>
+                <img src="{{aux.imagen.url}}" />
+                <h2>${{ aux.precio }}</h2>
+                <button class="boton-carro" style="vertical-align:middle"><span>Agregar al carro </span></button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

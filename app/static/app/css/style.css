@@ -1,0 +1,91 @@
+
+/* FOOTER Y COPYRIGHT  */
+
+.footer {
+    padding: 20px;
+    width: 100%;
+    color: white;
+    background-color: rgb(22, 85, 22);
+}
+.copyright {
+    background-color: rgb(8, 59, 8);
+    color: white;
+    width: 100%;
+}
+
+/* Boton de agregar al carro de productos destacados en INDEX */
+.btn-verde {
+    background-color: green !important;
+    color: white !important;
+}
+
+/* CSS PRODUCTOS */
+
+.contenedor-productos {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.producto {
+    margin: 8%;
+    text-align: center;
+}
+
+.producto img {
+    width: 250px;
+    height: 350px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.producto h1 {
+    font-family: Helvetica;
+    text-align: center;
+    font-size: 35px;
+}
+
+.producto h2 {
+    text-align: center;
+    font-size: 25px;
+}
+
+.boton-carro {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #07a101;
+    border: none;
+    color: #000000;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.boton-carro span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.boton-carro span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.boton-carro:hover span {
+    padding-right: 25px;
+}
+
+.boton-carro:hover span:after {
+    opacity: 1;
+    right: 0;
+}
