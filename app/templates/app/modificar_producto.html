@@ -1,19 +1,25 @@
 {% extends 'app/base.html' %}
 {% load static %}
 {% block contenido %}
-<div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-8">
-    <form action="" method="POST" enctype="multipart/form-data">
+<div class="container p-2">
+    <div class="row  p-2">
+        <div class=" col-sm-12 text-center">
+            <h1 class="h1 tittle">Modificar Producto</h1>
+        </div>
+    </div>
+</div>
+<div class="row px-5 mx-5 py-5 my-5">
+    <div class="col-sm-1 col-xl-4"></div>
+        <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <table>
+            <table class=" table table-hover">
                 {{ form }}
             </table>
-            <input type="submit" class="btn btn-info" value="Modificar">
+            <input type="submit" class="btn btn-success" value="Modificar">
             <input type="reset" class="btn btn-danger" value="Limpiar">
         </form>
         {{ mensaje }}
     </div>
-    <div class="col-sm-2"></div>
+    <div class="col-sm-1 col-xl-4"></div>
 </div>
 {% endblock %}
