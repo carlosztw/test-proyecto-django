@@ -89,3 +89,110 @@
     opacity: 1;
     right: 0;
 }
+
+/* CARD PRODUCTOS */
+
+.cardfachera body{
+    margin: 0;
+    font-family:Nunito Sans;
+    }
+    .cardfachera h3{
+    text-align: center;
+    font-size: 30px;
+    margin-top: 1%;
+    padding-top: 10px;
+    }
+    .cardfachera a{
+    text-decoration: none;
+    }
+    .cardfachera .gallery{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0;
+    }
+    .cardfachera .content{
+    width: 24%;
+    margin: 15px;
+    box-sizing: border-box;
+    float: left;
+    text-align: center;
+    border-radius:10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-top: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: .4s;
+    }
+    .cardfachera .content:hover{
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
+    transform: translate(0px, -8px);
+    transition: .6s;
+    }
+    .cardfachera img{
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    }
+    .cardfachera p{
+    text-align: center;
+    color: #b2bec3;
+    padding: 0 8px;
+    }
+    .cardfachera h6{
+    font-size: 26px;
+    text-align: center;
+    color: #222f3e;
+    margin-bottom: 1%;
+    }
+    .cardfachera ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    }
+    .cardfachera li{
+    padding: 5px;
+    }
+    .cardfachera .fa{
+    color: #ff9f43;
+    font-size: 26px;
+    transition: .4s;
+    }
+    .cardfachera .fa:hover{
+    transform: scale(1.3);
+    transition: .6s;
+    }
+    .cardfachera button{
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+    width: 100%;
+    padding: 15px;
+    border:0px;
+    outline: none;
+    cursor: pointer;
+    margin-top: 5px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    }
+    .cardfachera .buy-1{
+    background-color: green;
+    }
+    
+    @media(max-width: 1000px){
+    .cardfachera .content{
+    width: 46%;
+    }
+    }
+    @media(max-width: 750px){
+    .cardfachera .content{
+    width: 100%;
+    }
+    }
+   
