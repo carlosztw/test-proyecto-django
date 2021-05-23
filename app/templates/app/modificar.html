@@ -1,24 +1,24 @@
 {% extends 'app/base.html' %}
 {% load static %}
 {% block contenido %}
-<div class="container-fluid ">
-    <!-- ROW para hacer una separación en 2 secciones-->
-    <div class="row">
+<div class="container-fluid cardfachera">
+    
+    <div class="row">      
 
         <!-- PRODUCTOS -->
-        <div class="col-12 contenedor-productos">
-            {% for aux in listaProductos %}
-            <div class="producto border">
-                <h1>{{ aux.nombre }}</h1>
-                <img src="{{aux.imagen.url}}" />
-                <h2>${{ aux.precio }}</h2>
-                <td>
-                    <a href="{% url 'modificar_producto' aux.id %}" class="btn btn-info">Modificar</a>
-                    <a href="{% url 'eliminar_producto' aux.id %}" class="btn btn-danger">Eliminar</a>
-                </td>
-            </div>
-            {% endfor %}
+        <div class="gallery">
+        {% for aux in listaProductos %}
+        <div class="content">
+            <img src="{{aux.imagen.url}}">
+            <h3>{{ aux.nombre }}</h3>          
+            <h6>${{ aux.precio }}</h6>
+            <td>
+                <a href="{% url 'modificar_producto' aux.id %}" class="btn btn-info">Modificar</a>
+                <a href="{% url 'eliminar_producto' aux.id %}" class="btn btn-danger">Eliminar</a>
+            </td>
         </div>
-    </div>
+        {% endfor %}
+        </div> 
+  </div>
 </div>
 {% endblock %}
