@@ -3,13 +3,11 @@
 {% block contenido %}
 <div class="container-fluid ">
     <!-- ROW para hacer una separación en 2 secciones-->
-    <div class="row">
-        <div class="col-2">
-
-        </div>
+    
+    <div class="row">      
 
         <!-- PRODUCTOS -->
-        <div class="col-10 contenedor-productos">
+        <div class="col-12 contenedor-productos">
             {% for aux in listaProductos %}
             <div class="producto border">
                 <h1>{{ aux.nombre }}</h1>
