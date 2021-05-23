@@ -1,0 +1,18 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block contenido %}
+<div class="row">
+    <div class="col-sm-2"></div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <table>
+                {{ form }}
+            </table>
+            <input type="submit" class="btn btn-success" value="Guardar">
+            <input type="reset" class="btn btn-danger" value="Limpiar">
+        </form>
+        {{ mensaje }}
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+{% endblock %}

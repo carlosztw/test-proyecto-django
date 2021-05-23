@@ -15,7 +15,10 @@
                 <h1>{{ aux.nombre }}</h1>
                 <img src="{{aux.imagen.url}}" />
                 <h2>${{ aux.precio }}</h2>
-                <button class="boton-carro" style="vertical-align:middle"><span>Agregar al carro </span></button>               
+                <td>
+                    <a href="{% url 'modificar_producto' aux.id %}" class="btn btn-info">Modificar</a>
+                    <a href="{% url 'eliminar_producto' aux.id %}" class="btn btn-danger">Eliminar</a>
+                </td>
             </div>
             {% endfor %}
         </div>
