@@ -41,7 +41,7 @@ def modificar_producto(request, id):
     }
 
     if request.method == 'POST':
-        formulario = ProductoForm(data=request.POST,instance=producto)
+        formulario = ProductoForm(request.POST,request.FILES,instance=producto)
         if formulario.is_valid():
             formulario.save()
             datos['mensaje'] = "Producto modificado correctamente"
