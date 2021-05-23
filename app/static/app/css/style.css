@@ -196,3 +196,8 @@
     }
     }
    
+
+/* Para poder tener el navbar con sticky-top y que los modal sigan funcionando */
+.modal-backdrop {
+    position:unset !important;
+    }
