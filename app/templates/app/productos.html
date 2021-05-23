@@ -1,22 +1,22 @@
 {% extends 'app/base.html' %}
 {% load static %}
 {% block contenido %}
-<div class="container-fluid ">
+<div class="container-fluid cardfachera">
     <!-- ROW para hacer una separación en 2 secciones-->
     
     <div class="row">      
 
         <!-- PRODUCTOS -->
-        <div class="col-12 contenedor-productos">
-            {% for aux in listaProductos %}
-            <div class="producto border">
-                <h1>{{ aux.nombre }}</h1>
-                <img src="{{aux.imagen.url}}" />
-                <h2>${{ aux.precio }}</h2>
-                <button class="boton-carro" style="vertical-align:middle"><span>Agregar al carro </span></button>               
-            </div>
-            {% endfor %}
+        <div class="gallery">
+          {% for aux in listaProductos %}
+        <div class="content">
+            <img src="{{aux.imagen.url}}">
+            <h3>{{ aux.nombre }}</h3>          
+            <h6>${{ aux.precio }}</h6>
+            <button class="buy-1">Agregar al carro</button>
         </div>
-    </div>
+        {% endfor %}
+        </div> 
+  </div>
 </div>
 {% endblock %}
