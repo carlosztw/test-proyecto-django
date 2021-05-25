@@ -1,25 +1,26 @@
 {% extends 'app/base.html' %}
 {% load static %}
 {% block contenido %}
-<div class="container p-2">
-    <div class="row  p-2">
-        <div class=" col-sm-12 text-center">
-            <h1 class="h1 tittle">Modificar Producto</h1>
+<!-- PLUGIN PARA QUE EL FORMULARIO QUEDE EN BOOTSTRAP -->
+{% load crispy_forms_tags %}
+<div class="container-fluid" style="margin-bottom: 4%;">
+    <div class="row">
+        <!-- div para dejar centrado el formulario y que en dispositivos pequeños ocupe toda la pantalla -->
+        <div class="col-12 col-md-4 offset-md-4">
+            <h1 class= "text-center" style="margin-top: 4%; margin-bottom: 4%; color: green; font-weight: bold;">Modificar Producto</h1>    
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table>
+                    {{ form | crispy }}
+                </table>
+                <div style="margin-top: 2%;">
+                    <input type="submit" class="btn btn-success" value="Modificar">
+                    <input type="reset" class="btn btn-danger" value="Limpiar">
+                </div>
+            </form>
+            {{ mensaje }}
         </div>
     </div>
+        
 </div>
-<div class="row px-5 mx-5 py-5 my-5">
-    <div class="col-sm-1 col-xl-4"></div>
-        <form action="" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <table class=" table table-hover">
-                {{ form }}
-            </table>
-            <input type="submit" class="btn btn-success" value="Modificar">
-            <input type="reset" class="btn btn-danger" value="Limpiar">
-        </form>
-        {{ mensaje }}
-    </div>
-    <div class="col-sm-1 col-xl-4"></div>
-</div>
-{% endblock %}
+

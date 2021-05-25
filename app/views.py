@@ -24,12 +24,12 @@ def agregar_producto(request):
     datos = {
         'form' : ProductoForm()    
     }
-
+    
     if request.method == 'POST':
         formulario = ProductoForm(request.POST,request.FILES)
         if formulario.is_valid():
             formulario.save()
-            datos['mensaje'] = "Producto agregado correctamente"
+            datos['mensaje'] = "Producto agregado correctamente a la base de datos"
 
     return render(request, 'app/agregar_producto.html', datos)
 
