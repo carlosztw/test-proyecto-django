@@ -19,7 +19,17 @@
                     <input type="reset" class="btn btn-danger" value="Limpiar">
                 </div>
             </form>
-            {{ mensaje }}
+
+            {% if mensaje %}
+            <script>
+                Swal.fire({
+                    title: '{{mensaje}}',
+                    icon: 'success',
+                    confirmButtonColor: '#4CAF50'
+                })
+            </script>
+            {% endif %}
+            
         </div>
     </div>
         

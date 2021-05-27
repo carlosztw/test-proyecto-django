@@ -8,7 +8,14 @@ from .models import Producto
     #En el template agregar : {% load crispy_forms_tags %}
 
 class ProductoForm(ModelForm):
+    nombre = forms.CharField(min_length=4,max_length=25)
+    precio = forms.IntegerField(min_value=2000)
+    descripcion = forms.CharField(min_length=5, max_length=100)
 
     class Meta:
         model = Producto
-        fields = ['nombre','precio', 'imagen','descripcion','tipo']
+        fields = ['nombre','precio', 'imagen','descripcion','tipo', 'fecha']
+
+        widgets = {
+            'fecha': forms.SelectDateWidget(years=range(2015, 2030))
+        }

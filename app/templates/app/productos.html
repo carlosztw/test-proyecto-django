@@ -5,11 +5,15 @@
     
     <div class="row">      
 
-        <!-- PRODUCTOS -->
+        <!-- CARD DE PRODUCTOS -->
         <div class="gallery">
           {% for aux in listaProductos %}
         <div class="content">
+          {% if aux.imagen %}
             <img src="{{aux.imagen.url}}">
+          {% else %}
+            <img src="{% static 'app/img/noimagen.jpg' %}">
+          {% endif %}
             <h3>{{ aux.nombre }}</h3>          
             <h6>${{ aux.precio }}</h6>
             <button class="buy-1">Agregar al carro</button>

@@ -14,6 +14,7 @@ class Producto(models.Model):
     imagen = models.ImageField(null=True, blank=True, upload_to= "productos")
     descripcion = models.CharField(max_length=60)
     tipo = models.ForeignKey(TipoProducto, on_delete=models.CASCADE)
+    fecha = models.DateField()
     
     def __str__(self):
         return self.nombre
