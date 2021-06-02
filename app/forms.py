@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, fields, widgets
-from .models import Producto
+from .models import Producto, Contacto
 
 #PARA TENER FORMS CON BOOTSTRAP:
     #INSTALAR: pip install django-crispy-forms
@@ -19,3 +19,10 @@ class ProductoForm(ModelForm):
         widgets = {
             'fecha': forms.SelectDateWidget(years=range(2015, 2030))
         }
+
+class ContactoForm(ModelForm):    
+
+    nombre = forms.CharField(min_length=4, max_length=60)
+    class Meta:
+        model = Contacto
+        fields = '__all__'

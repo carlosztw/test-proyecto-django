@@ -1,5 +1,5 @@
 from django.http.response import Http404
-from app.forms import ProductoForm
+from app.forms import ProductoForm, ContactoForm
 from django.shortcuts import render, redirect
 from .models import Producto
 from django.core.paginator import Page, Paginator
@@ -14,6 +14,23 @@ def productos(request):
 
 def quienessomos(request):
     return render(request, 'app/quienessomos.html')
+
+def contacto(request):
+    return render(request, 'app/contacto.html')    
+
+def contacto(request):
+    datos = {
+        'form': ContactoForm()
+    }
+    
+    if request.method == 'POST':
+        formulario = ContactoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+        datos['mensaje'] = "Solicitud enviada correctamente"    
+    
+    return render(request, 'app/contacto.html', datos)   
+
 
 def productos(request):
     # CREAMOS UNA VARIABLE QUE LEE ALL EN LA BD (SELECT * FROM PRODUCTO) 
