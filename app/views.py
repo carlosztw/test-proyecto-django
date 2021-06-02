@@ -1,6 +1,9 @@
+from django.http.response import Http404
 from app.forms import ProductoForm
 from django.shortcuts import render, redirect
 from .models import Producto
+from django.core.paginator import Page, Paginator
+from django.http import Http404
 # Create your views here.
 
 def index(request):
@@ -15,8 +18,17 @@ def quienessomos(request):
 def productos(request):
     # CREAMOS UNA VARIABLE QUE LEE ALL EN LA BD (SELECT * FROM PRODUCTO) 
     productoAll = Producto.objects.all()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(productoAll, 9)
+        productoAll = paginator.page(page)
+    except:
+        raise Http404
+
     datos = {
-        'listaProductos' : productoAll
+        'listaProductos' : productoAll,
+        'paginator': paginator
     }
     return render(request, 'app/productos.html', datos)    
 
@@ -57,11 +69,18 @@ def eliminar_producto(request, id):
 
 
 #SEPARAR LA SECCION DE PRODUCTOS Y MODIFICAR
-def modificar(request):
-    return render(request, 'app/modificar.html')
+
 def modificar(request):
     productoAll = Producto.objects.all()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(productoAll, 9)
+        productoAll = paginator.page(page)
+    except:
+        raise Http404    
     datos = {
-        'listaProductos' : productoAll
+        'listaProductos' : productoAll,
+        'paginator': paginator
     }
     return render(request, 'app/modificar.html', datos)     

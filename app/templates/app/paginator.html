@@ -1,0 +1,109 @@
+{% if paginator.num_pages > 1%}
+<div class="d-flex justify-content-center">
+    <ul class="pagination" >
+        {% if listaProductos.has_previous %}
+            <li class="page-item d-none d-sm-block" ><a class="page-link" href="?page={{ listaProductos.previous_page_number }}#pagtable">Anterior</a></li>
+        {% endif %}
+        {% for page in paginator.page_range %}
+            {% if forloop.last and page != listaProductos.number and paginator.num_pages > 7 %} 
+                {% if listaProductos.next_page_number != paginator.num_pages%}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ listaProductos.number | add:1}}#pagtable">...</a>
+                </li>
+                {% endif %}
+            <li class="page-item">
+                    <a class="page-link" href="?page={{paginator.num_pages}}#pagtable">{{paginator.num_pages}}</a>
+            </li>
+            {% endif %}
+            {% if page == listaProductos.number and page > 7 %}
+            <li class="page-item" style="background-color: green;">
+                <a class="page-link" href="?page={{ page | add:-1 }}#pagtable">...</a>
+            </li>    
+            {% endif %}
+            {% if page < 7 or page == listaProductos.number %}
+            <li class="page-item {% if page == listaProductos.number %}active{% endif %}">
+                <a class="page-link" href="?page={{ page }}#pagtable">{{ page }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+        {% if listaProductos.has_next %}
+            <li class="page-item d-none d-sm-block">
+                <a class="page-link" href="?page={{ listaProductos.next_page_number }}#pagtable">Siguiente</a>
+            </li>
+        {% endif %}
+    </ul>
+</div>
+<div class="d-flex justify-content-center d-sm-none">            
+    {% if listaProductos.has_previous %}
+        <span class="page-item"><a  class="page-link" href="?page={{ listaProductos.previous_page_number }}#pagtable">Anterior</a></span>
+    {% endif %}
+    {% if listaProductos.has_next %}
+        <span class="page-item"><a class="page-link" href="?page={{ listaProductos.next_page_number }}#pagtable">Siguiente</a></span>
+    {% endif %}
+    <br>
+    <br>
+</div>
+{% endif %}
+
+ 
+<!-- ESTILO DEL PAGINATOR -->
+
+<style>
+.page-link {
+
+    position: relative;
+    
+    display: block;
+    
+    padding: 0.5rem 0.75rem;
+    
+    margin-left: -1px;
+    
+    line-height: 1.25;
+    
+    color: green;
+    
+    background-color: #D8EBEB;
+    
+    border: 1px solid green;
+    
+    }
+    
+    .page-item.disabled .page-link {
+    
+    color: #868e96;
+    
+    pointer-events: none;
+    
+    cursor: auto;
+    
+    background-color: #CEFFCE;
+    
+    border-color: #718393;
+    
+    }
+    
+    .page-item.active .page-link {
+    
+    z-index: 1;
+    
+    color: #fff;
+    
+    background-color: green;
+    
+    border-color: #AEFF5E;
+    
+    }
+    
+    .page-link:focus, .page-link:hover {
+    
+    color: #fff;
+    
+    text-decoration: none;
+    
+    background-color: green;
+    
+    border-color: #AEFF5E;
+    
+    }
+</style>

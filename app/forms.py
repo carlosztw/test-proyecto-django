@@ -8,9 +8,9 @@ from .models import Producto
     #En el template agregar : {% load crispy_forms_tags %}
 
 class ProductoForm(ModelForm):
-    nombre = forms.CharField(min_length=4,max_length=25)
+    nombre = forms.CharField(min_length=4,max_length=40)
     precio = forms.IntegerField(min_value=2000)
-    descripcion = forms.CharField(min_length=5, max_length=100)
+    descripcion = forms.CharField(min_length=5, max_length=60)
 
     class Meta:
         model = Producto
