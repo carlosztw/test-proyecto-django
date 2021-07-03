@@ -1,5 +1,7 @@
+import django
 from django.contrib import admin
 from django.urls import path
+from django.urls.conf import include
 from .views import index, productos, quienessomos, agregar_producto, modificar_producto, eliminar_producto, modificar, contacto
 from django.conf import settings #IMG
 from django.conf.urls.static import static #IMG
@@ -13,6 +15,7 @@ urlpatterns = [
     path('modificarproducto/<id>/', modificar_producto, name="modificar_producto"),
     path('eliminarproducto/<id>/', eliminar_producto, name="eliminar_producto"),
     path('modificar-productos/', modificar, name="modificar"),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]  
 
  #PARA AGREGAR IMG
