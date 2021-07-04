@@ -18,8 +18,12 @@
             <h6>${{ aux.precio }}</h6>
             <td>
                 <div style="margin-bottom: 2%;">  
+                    {% if perms.app.change_producto %}
                     <a href="{% url 'modificar_producto' aux.id %}" class="btn btn-info">Modificar</a>
+                    {% endif %}
+                    {% if perms.app.delete_producto %}
                     <a onclick="confirmarEliminar({{aux.id}})" class="btn btn-danger">Eliminar</a>
+                    {% endif %}
                 </div>    
             </td>
         </div>

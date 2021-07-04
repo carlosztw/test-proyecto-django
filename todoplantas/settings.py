@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
 X_FRAME_OPTIONS='SAMEORIGIN' 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

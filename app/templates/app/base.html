@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo Plantas</title>
-    {%load static %}
+    {% load static %}
     <link rel="icon" href="{% static 'app/img/favicon.ico' %}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
@@ -58,112 +58,38 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'contacto' %} " style="color: white;">Contacto</a>
         </li>
+        {% if perms.app.add_producto %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'agregar_producto' %} " style="color: white;">Agregar Producto</a>
         </li>
+        {% endif %}
+        {% if perms.app.change_producto %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'modificar' %} " style="color: white;">Modificar productos</a>
         </li>
+        {% endif %}
       </ul>  
       <!-- BOTON CON INICIAR SESION / REGISTRARSE -->
       <ul class="navbar-nav" style="padding-right: 50px;">
         <li class="nav-item">
-          <!-- Boton que activa el modal de iniciar sesion-->
-          <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal" data-keyboard="false" data-backdrop="static" style="margin-right: 20px; margin-bottom: 7px;">
+          <!-- Boton de iniciar sesion-->
+          {% if user.is_authenticated %}
+          <a href="#" style="margin-right: 20px; color: white; text-decoration: none;">
+            {{ user.username}}
+          </a>
+          <a href="{% url 'logout' %}" class="btn btn-danger"  style="margin-right: 20px; margin-bottom: 7px;">
+            Cerrar sesión
+          </a>
+          {% else %}       
+          <a href="{% url 'login' %}" class="btn btn-light"  style="margin-right: 20px; margin-bottom: 7px;">
             Iniciar sesión
-          </button>
-          <!-- Modal Iniciar Sesion-->
-          <div class="modal fade" id="exampleModal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Ingresa tus credenciales </h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" style="color: red;"><i class="fa fa-window-close" aria-hidden="true"></i></span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                    <form class="login" action="{% url 'index' %}" method="GET">
-                        <div class="form-group">
-                            <label for="email">Correo electrónico:</label>
-                            <input type="email" class="form-control" placeholder="Ingresa tu correo electrónico" id="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Contraseña:</label>
-                            <input type="password" class="form-control" placeholder="Ingresar contraseña" id="pwd">
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn" style="background-color: green; color: white;">Iniciar sesión</button>
-                        </div>
-                        <div class="registrar" style="text-align: center; margin-top: 3%;">
-                            <label>¿No tienes cuenta?.<a data-toggle="modal" href="#exampleModal2" data-dismiss="modal"> Regístrate.</a></label>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">
-                  Cerrar
-                  </button>
-                  
-                </div>
-              </div>
-            </div>
-            </div>
+          </a>
+          <a href="{% url 'registro_usuario' %}" class="btn btn-success"  style="margin-right: 20px; margin-bottom: 7px;">
+            Registrarse
+          </a>
+          <!-- Boton de registrarse-->
         </li>
-        <li class="nav-item">
-          <!-- Boton que activa el modal de registrarse-->
-          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2" data-keyboard="false" data-backdrop="static">
-            Regístrate
-          </button>
-          <!-- Modal registrarse-->
-          <div class="modal fade" id="exampleModal2">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Ingresa tus datos</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" style="color: red;"><i class="fa fa-window-close" aria-hidden="true"></i></span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form action="{% url 'index' %}" method="GET">
-                    <div class="form-group">
-                        <label for="txtNombre">Nombre:</label>
-                        <input type="text" class="form-control" placeholder="Ej: Rodrigo" id="txtNombre">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtApellido">Apellido:</label>
-                        <input type="text" class="form-control" placeholder="Ej: Pérez" id="txtApellido">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtTelefono">Teléfono:</label>
-                        <input type="Number" class="form-control" placeholder="Ej: 903698545" id="txtTelefono">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Correo electrónico:</label>
-                        <input type="email" class="form-control" placeholder="Ej: tucorreo.ejemplo@dominio.cl" id="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Contraseña:</label>
-                        <input type="password" class="form-control" placeholder="Contraseña" id="pwd">
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn" style="background-color: green; color: white;">Crear cuenta</button>
-                    </div>
-                    <div class="registrar" style="text-align: center; margin-top: 3%;">
-                        <label>¿Tienes cuenta?.<a data-toggle="modal" href="#exampleModal" data-dismiss="modal"> Inicia sesión</a></label>
-                    </div>
-                </form>    
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">
-                  Cerrar
-                  </button>         
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>  
+        {% endif %}
       </ul>      
   </nav>
 

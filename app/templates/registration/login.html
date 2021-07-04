@@ -1,0 +1,25 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block contenido %}
+{% load crispy_forms_tags %}
+<!-- FORMULARIO LOGIN -->
+<div class="container-fluid" style="margin-bottom: 11%;">
+    <div class="row">
+        <div class="col-12 col-md-3 offset-md-4 col-lg-3 offset-lg-4">
+            <h1 class= "text-center" style="margin-top: 8%; margin-bottom: 6%; color: green; font-weight: bold;">Ingresa tus credenciales</h1> 
+    
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+
+                    <div class="text-center" style= "margin-top: 6%; margin-bottom: 3%;">
+                        <button type="submit" class="btn" style="background-color: green; color: white;">Iniciar sesión</button>
+                    </div>
+                    <div class="text-center" style= "margin-top: 5%; margin-bottom: 12%;">
+                    <label>¿No tienes cuenta?.<a  href="{% url 'registro_usuario' %}"> Regístrate.</a></label>
+                    </div>
+                </form>
+        </div>        
+    </div>
+</div>
+{% endblock %}

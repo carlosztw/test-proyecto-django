@@ -1,9 +1,12 @@
+from django.contrib.auth import authenticate, login
 from django.http.response import Http404
-from app.forms import ProductoForm, ContactoForm
+from app.forms import CustomUserCreationForm, ProductoForm, ContactoForm
 from django.shortcuts import render, redirect
 from .models import Producto
 from django.core.paginator import Page, Paginator
 from django.http import Http404
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required, permission_required
 # Create your views here.
 
 def index(request):
@@ -49,6 +52,7 @@ def productos(request):
     }
     return render(request, 'app/productos.html', datos)    
 
+@permission_required('app.add_producto')
 def agregar_producto(request):
     datos = {
         'form' : ProductoForm()    
@@ -59,10 +63,11 @@ def agregar_producto(request):
         if formulario.is_valid():
             formulario.save()
             datos['mensaje'] = "Producto agregado correctamente a la base de datos"
+        datos["form"] = formulario
 
     return render(request, 'app/agregar_producto.html', datos)
 
-
+@permission_required('app.change_producto')
 def modificar_producto(request, id):
     producto = Producto.objects.get(id=id)
     datos = {
@@ -75,9 +80,10 @@ def modificar_producto(request, id):
             formulario.save()
             datos['mensaje'] = "Producto modificado correctamente"
             datos['form'] = formulario
-
+        datos["form"] = formulario
     return render(request, 'app/modificar_producto.html', datos)
 
+@permission_required('app.delete_producto')
 def eliminar_producto(request, id):
     producto = Producto.objects.get(id=id)
     producto.delete()
@@ -86,7 +92,7 @@ def eliminar_producto(request, id):
 
 
 #SEPARAR LA SECCION DE PRODUCTOS Y MODIFICAR
-
+@permission_required('app.change_producto')
 def modificar(request):
     productoAll = Producto.objects.all()
     page = request.GET.get('page', 1)
@@ -100,4 +106,20 @@ def modificar(request):
         'listaProductos' : productoAll,
         'paginator': paginator
     }
-    return render(request, 'app/modificar.html', datos)     
+    return render(request, 'app/modificar.html', datos)
+
+def registro_usuario(request):    
+    datos = {
+        'form' : CustomUserCreationForm()
+    }
+
+    if request.method == 'POST':
+        formulario = CustomUserCreationForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            usuario = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
+            login(request, usuario)
+            return redirect(to=index)
+        datos["form"] = formulario   
+    return render(request, 'registration/signup.html', datos)
+

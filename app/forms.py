@@ -1,6 +1,10 @@
 from django import forms
 from django.forms import ModelForm, fields, widgets
 from .models import Producto, Contacto
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from .validators import MaxSizeFileValidator
+from django.forms import ValidationError
 
 #PARA TENER FORMS CON BOOTSTRAP:
     #INSTALAR: pip install django-crispy-forms
@@ -11,6 +15,18 @@ class ProductoForm(ModelForm):
     nombre = forms.CharField(min_length=4,max_length=40)
     precio = forms.IntegerField(min_value=2000)
     descripcion = forms.CharField(min_length=5, max_length=60)
+    imagen = forms.ImageField(required=False, validators=[MaxSizeFileValidator(max_file_size=2)])
+
+    def clean_nombre(self):
+        nombre = self.cleaned_data["nombre"]
+        existe = Producto.objects.filter(nombre__iexact=nombre)
+
+        if self.instance.pk is not None:
+            existe = existe.exclude(pk=self.instance.pk)
+        if existe.exists():
+            raise ValidationError("Este nombre ya existe")
+
+        return nombre    
 
     class Meta:
         model = Producto
@@ -26,3 +42,9 @@ class ContactoForm(ModelForm):
     class Meta:
         model = Contacto
         fields = '__all__'
+
+class CustomUserCreationForm(UserCreationForm):
+    
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
