@@ -1,13 +1,13 @@
 {% extends 'app/base.html' %}
 {% load static %}
 {% block contenido %}
-<div class="container-fluid">
+<div class="container">
     <!-- ROW para hacer una separación en 3 secciones de la web-->
-    <div class="row">
-        <div class="d-none d-sm-block col-md-3 col-lg-3">
-
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-6">
+    <div class="row justify-content-center">
+        <!-- <div class="d-none d-sm-block col-md-3 col-lg-3">
+        </div> -->
+        
+        <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -37,8 +37,8 @@
             </div>
                 <!-- PRODUCTOS DESTACADOS -->  
                 <h2 class="text-center" style="padding-top: 2%; color: green; font-weight: bold;">PRODUCTOS DESTACADOS</h2> 
-                <div class="row destacados">
-                <div class="card mx-auto col-sm-12 col-md-4 col-lg-4 " style="width:20rem;margin:20px 0 24px 0">
+                <div class="row justify-content-center">
+                <div class="card col-8 col-sm-7 col-md-4 col-lg-4 " style="width:20rem;margin:20px 0 24px 0">
                     <img class="card-img-top" src="{% static 'app/img/prod1.jpg' %}" alt="image" style="width:100%">
                     <div class="card-body">
                         <h3 class="card-title" style="text-align: center;">Ficus</h3>
@@ -46,7 +46,7 @@
                         <div class="text-center" style="margin-left: 15px;"><a class="btn btn-verde" style="margin-right: 10%;">Agregar al carro</a></div>
                     </div>
                 </div>
-                <div class="card mx-auto col-sm-12 col-md-4 col-lg-4" style="width:20rem;margin:20px 0 24px 0">
+                <div class="card col-8 col-sm-7 col-md-4 col-lg-4" style="width:20rem;margin:20px 0 24px 0">
                     <img class="card-img-top" src="{% static 'app/img/prod4.jpg' %}" alt="image" style="width:100%">
                     <div class="card-body">
                         <h3 class="card-title" style="text-align: center;">Bonsai Chorizo</h3>
@@ -54,7 +54,7 @@
                         <div class="text-center" style="margin-left: 15px;"><a class="btn btn-verde" style="margin-right: 10%;">Agregar al carro</a></div>
                     </div>
                 </div>
-                <div class="card mx-auto col-sm-12 col-md-4 col-lg-4" style="width:20rem;margin:20px 0 24px 0">
+                <div class="card col-8 col-sm-7 col-md-4 col-lg-4" style="width:20rem;margin:20px 0 24px 0">
                     <img class="card-img-top" src="{% static 'app/img/prod3.jpg' %}" alt="image" style="width:80%; margin-left: 25px;">
                     <div class="card-body">
                         <h3 class="card-title" style="text-align: center;">Aloe Vera</h3>
@@ -64,9 +64,12 @@
                 </div>
             </div>
         </div>
-        <div class="d-none d-sm-block col-md-3 col-lg-3">
-            
-        </div>
     </div>
+        <div class="d-none d-sm-block col-md-3 col-lg-3">
+        
+        
+        </div>
+        </div>
+    
 </div>
 {% endblock %}
