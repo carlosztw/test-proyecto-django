@@ -18,7 +18,8 @@ urlpatterns = [
     path('eliminarproducto/<id>/', eliminar_producto, name="eliminar_producto"),
     path('modificar-productos/', modificar, name="modificar"),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('registrousuario/', registro_usuario, name="registro_usuario" )
+    path('registrousuario/', registro_usuario, name="registro_usuario" ),
+    path('', include('pwa.urls')),
 ]  
 
  #PARA AGREGAR IMG

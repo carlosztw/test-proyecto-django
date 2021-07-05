@@ -44,11 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'crispy_forms',
+    'pwa',
 ]
 
 X_FRAME_OPTIONS='SAMEORIGIN' 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -138,3 +139,30 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+PWA_APP_NAME = "todoplantas"
+PWA_APP_DESCRIPCION = "Venta de artículos de jardinería"
+PWA_APP_THEME_COLOR = "#8DE373"
+PWA_APP_BACKGROUND_COLOR = "#56EB29"
+
+PWA_APP_ICONS = [
+
+    {
+        "src": "/static/app/img/logo1.png",
+        "sizes": "400x96",
+        "type": "image/png",
+        "purpose": "any"
+    }
+]
+
+PWA_APP_ICONS_APPLE = [
+
+    {
+        "src": "/static/app/img/logo1.png",
+        "sizes": "400x96",
+        "type": "image/png",
+        "purpose": "any"
+    }
+]
+
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'serviceworker.js')
