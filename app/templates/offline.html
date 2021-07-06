@@ -1,13 +1,24 @@
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sin conexión</title>
+</head>
+<body style="background-color: rgb(125, 209, 125);">
+</html>
 <br>
 <br>
 <br>
 <div style="background-color: rgb(23, 146, 23); border-radius: 30px; margin-bottom: 5%; margin-top: 5%;">
-    <img src="{% static 'app/img/logo1.png' %}" height="120px" alt="" style="display: block; margin: 0 auto; max-width: 100%;">
+    <a href="/"><img src="{% static 'app/img/logo1.png' %}" height="120px" alt="" style="display: block; margin: 0 auto; max-width: 100%;"></a>
 </div>
 
-<h1 style="color: green; text-align: center;">No tienes conexión a internet</h1>
+<h1 style="color: green; text-align: center;">No tienes conexión a internet. Inténtalo nuevamente</h1>
 
-<img style="display: block; margin: 0 auto; max-width: 100%;" src="{% static 'app/img/offilesad.png' %}">
+<img href="index.html" style="display: block; margin: 0 auto; max-width: 100%;" src="{% static 'app/img/offilesad.png' %}">
+</body>
 
 
