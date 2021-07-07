@@ -1,14 +1,19 @@
 from django.contrib.auth import authenticate, login
 from django.http.response import Http404
-from app.forms import CustomUserCreationForm, ProductoForm, ContactoForm
+from app.forms import CustomUserCreationForm, ProductoForm, ContactoForm, SuscripcionForm
 from django.shortcuts import render, redirect
 from .models import Producto
 from django.core.paginator import Page, Paginator
 from django.http import Http404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
-# Create your views here.
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from app import serializers
+from app import models
+from rest_framework import viewsets
 
+# Create your views here.
 def index(request):
     return render(request, 'app/index.html')
 
@@ -123,3 +128,40 @@ def registro_usuario(request):
         datos["form"] = formulario   
     return render(request, 'registration/signup.html', datos)
 
+
+def suscripcion(request):
+    datos = {
+        'form' : SuscripcionForm()
+    }
+
+    if request.method == 'POST':
+        formulario = SuscripcionForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to=index)
+        datos["form"] = formulario   
+    return render(request, 'app/suscripcion.html', datos)
+
+
+    return render(request, 'app/suscripcion.html')    
+
+
+class SuscripcionViewSet(viewsets.ModelViewSet):
+
+    serializer_class = serializers.suscriptoresSerializer
+
+    def get_queryset(self):
+        queryset = models.Suscriptor.objects.all()
+        return queryset
+
+
+    def patch(self,request,pk=None):
+        return Response({'method':'patch'})
+
+
+    def delete(self,request,pk=None):
+        return Response({'method':'delete'})
+
+def crear_suscripcion(request):
+    form = SuscripcionForm()
+    return render(request, 'suscripcion.html',{'form':form})

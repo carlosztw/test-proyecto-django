@@ -15,10 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
+from django.conf.urls import include
+from django.contrib import admin
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app.urls')),
+    path('api/', include('app.urlsapi')),
 ]   
 
 # CAMBIANDO EL SITIO DE ADMIN #

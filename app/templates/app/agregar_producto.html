@@ -1,16 +1,14 @@
-{% extends 'app/base.html' %}
-{% load static %}
-{% block contenido %}
+{% extends 'app/base.html' %} {% load static %} {% block contenido %}
 <!-- PLUGIN PARA QUE EL FORMULARIO QUEDE EN BOOTSTRAP -->
 {% load crispy_forms_tags %}
 <div class="container" style="margin-bottom: 4%;">
-    
-   
+
+
     <div class="row justify-content-center">
         <!-- div para dejar centrado el formulario y que en dispositivos pequeños ocupe toda la pantalla -->
         <div class="col-12 col-sm-10 col-md-7 col-lg-7 col-xl-5">
-           
-            <h1 class= "text-center" style="margin-top: 4%; margin-bottom: 4%; color: green; font-weight: bold;">Agregar Producto</h1>    
+
+            <h1 class="text-center" style="margin-top: 4%; margin-bottom: 4%; color: green; font-weight: bold;">Agregar Producto</h1>
             <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <table>
@@ -31,9 +29,9 @@
                 })
             </script>
             {% endif %}
-            
+
         </div>
     </div>
-        
+
 </div>
 {% endblock %}

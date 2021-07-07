@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'app',
     'crispy_forms',
     'pwa',
+    'rest_framework',
+    'users'
 ]
 
 X_FRAME_OPTIONS='SAMEORIGIN' 

@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, fields, widgets
-from .models import Producto, Contacto
+from .models import Producto, Contacto, Suscriptor
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .validators import MaxSizeFileValidator
@@ -43,8 +43,12 @@ class ContactoForm(ModelForm):
         model = Contacto
         fields = '__all__'
 
-class CustomUserCreationForm(UserCreationForm):
-    
+class CustomUserCreationForm(UserCreationForm): 
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
+
+class SuscripcionForm(ModelForm):
+    class Meta:
+        model = Suscriptor
+        fields = "__all__"

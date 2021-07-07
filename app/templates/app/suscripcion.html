@@ -1,0 +1,22 @@
+{% extends 'app/base.html' %} {% load static %}{% load crispy_forms_tags %} {% block contenido %}
+<div class="container" style="margin-bottom: 11%;">
+    <div class="row justify-content-center">
+        <div class="col-10 col-sm-10 col-md-8 col-lg-8 col-xl-8 ">
+            <h1 class="text-center" style="margin-top: 8%; margin-bottom: 6%; color: green; font-weight: bold;">Unete a la fundacion </h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+            <form action="" method="POST">
+                {% csrf_token %} {{ form | crispy }}
+                <div class="text-center" style="margin-top: 6%; margin-bottom: 3%;">
+                    <button type="submit" class="btn" style="background-color: green; color: white;">Suscribirse</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+{% endblock %}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,10 +13,10 @@
     <!-- Google Fonts Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
     <!-- CSS -->
-    <link rel="stylesheet" href="{% static 'app/css/style.css' %}"> 
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
     <!-- JavaScript -->
-    <script src="{% static 'app/js/javascript.js' %}"></script> 
-    <script src="{% static 'app/js/sweetalert.js' %}"></script> 
+    <script src="{% static 'app/js/javascript.js' %}"></script>
+    <script src="{% static 'app/js/sweetalert.js' %}"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- jQuery library -->
@@ -26,99 +27,94 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- SweetAlert2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {% load pwa %}
-
-    {% progressive_web_app_meta %}
+    {% load pwa %} {% progressive_web_app_meta %}
 </head>
 
 <body>
-  <!-- NAVBAR -->
-  <nav class="navbar sticky-top navbar-expand-lg navbar-light " style="background-color: rgb(49, 131, 49); " >
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- NAVBAR -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light " style="background-color: rgb(49, 131, 49); ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <!-- LOGO NAVBAR -->
-    <a class="navbar-brand" href="{% url 'index' %}" >
-        <img
-        src="{% static 'app/img/logo1.png' %}"
-        height="35"
-        alt=""
-        loading="lazy" />
-    </a>
-    <!-- CONTENIDO NAVBAR -->
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'index' %} " style="color: white;">Inicio <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'productos' %}" style="color: white;">Productos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'quienessomos' %} " style="color: white;">¿Quiénes Somos?</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'contacto' %} " style="color: white;">Contacto</a>
-        </li>
-        {% if perms.app.add_producto %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'agregar_producto' %} " style="color: white;">Agregar Producto</a>
-        </li>
-        {% endif %}
-        {% if perms.app.change_producto %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'modificar' %} " style="color: white;">Modificar productos</a>
-        </li>
-        {% endif %}
-      </ul>  
-      <!-- BOTON CON INICIAR SESION / REGISTRARSE -->
-      <ul class="navbar-nav" style="padding-right: 50px;">
-        <li class="nav-item">
-          <!-- Boton de iniciar sesion-->
-          {% if user.is_authenticated %}
-          <a href="#" style="margin-right: 20px; color: white; text-decoration: none;">
+        <!-- LOGO NAVBAR -->
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'app/img/logo1.png' %}" height="35" alt="" loading="lazy" />
+        </a>
+        <!-- CONTENIDO NAVBAR -->
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'index' %} " style="color: white;">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'productos' %}" style="color: white;">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'quienessomos' %} " style="color: white;">¿Quiénes Somos?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contacto' %} " style="color: white;">Contacto</a>
+                </li>
+                {% if perms.app.add_producto %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'agregar_producto' %} " style="color: white;">Agregar Producto</a>
+                </li>
+                {% endif %} {% if perms.app.change_producto %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'modificar' %} " style="color: white;">Modificar productos</a>
+                </li>
+                {% endif %} {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'suscripcion' %} " style="color: white;">Suscribirse</a>
+                </li>
+                {% endif %}
+
+            </ul>
+            <!-- BOTON CON INICIAR SESION / REGISTRARSE -->
+            <ul class="navbar-nav" style="padding-right: 50px;">
+                <li class="nav-item">
+                    <!-- Boton de iniciar sesion-->
+                    {% if user.is_authenticated %}
+                    <a href="#" style="margin-right: 20px; color: white; text-decoration: none;">
             {{ user.username}}
           </a>
-          <a href="{% url 'logout' %}" class="btn btn-danger"  style="margin-right: 20px; margin-bottom: 7px;">
+                    <a href="{% url 'logout' %}" class="btn btn-danger" style="margin-right: 20px; margin-bottom: 7px;">
             Cerrar sesión
-          </a>
-          {% else %}       
-          <a href="{% url 'login' %}" class="btn btn-light"  style="margin-right: 20px; margin-bottom: 7px;">
+          </a> {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-light" style="margin-right: 20px; margin-bottom: 7px;">
             Iniciar sesión
           </a>
-          <a href="{% url 'registro_usuario' %}" class="btn btn-success"  style="margin-right: 20px; margin-bottom: 7px;">
+                    <a href="{% url 'registro_usuario' %}" class="btn btn-success" style="margin-right: 20px; margin-bottom: 7px;">
             Registrarse
           </a>
-          <!-- Boton de registrarse-->
-        </li>
-        {% endif %}
-      </ul>      
-  </nav>
+                    <!-- Boton de registrarse-->
+                </li>
+                {% endif %}
+            </ul>
+    </nav>
 
-  <!-- CONTENIDO -->
-  {% block contenido %}
-
-  {% endblock %}
+    <!-- CONTENIDO -->
+    {% block contenido %} {% endblock %}
 
 
-  <!-- Footer -->
+    <!-- Footer -->
     <footer class="footer ">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-4 col-lg-4">
-                <h4>Contacto</h4>
-                <p>Todo Plantas</p>
-                <p>Dirección: Av. Las plantotas <br> Teléfonos: +56 9 5862 3896 / 22 546 6502
-                    <br> Correo: todoplantas@gmail.com
-                </p>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <h4>Contacto</h4>
+                    <p>Todo Plantas</p>
+                    <p>Dirección: Av. Las plantotas <br> Teléfonos: +56 9 5862 3896 / 22 546 6502
+                        <br> Correo: todoplantas@gmail.com
+                    </p>
+                </div>
             </div>
         </div>
-    </div> 
     </footer>
-  <!-- COPYRIGHT-->
+    <!-- COPYRIGHT-->
     <div class="copyright text-center p-3">
         © 2021 Copyright: Todo Plantas
     </div>
 </body>
-</html>
 
+</html>

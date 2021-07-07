@@ -1,3 +1,4 @@
+import re
 from django.db import models
 
 # Create your models here.
@@ -30,6 +31,16 @@ class Contacto(models.Model):
     correo = models.EmailField()
     tipo_consulta = models.IntegerField(choices=consultas)
     mensaje = models.TextField(max_length=500)
+
+    def __str__(self):
+        return self.nombre
+
+
+class Suscriptor(models.Model):
+    nombre = models.CharField(max_length=60)
+    correo = models.EmailField()
+    monto = models.IntegerField()
+    fecha_suscripcion = models.DateField()
 
     def __str__(self):
         return self.nombre
