@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 
-class TipoProducto(models.Model):
+class TipoProducto(models.Model): 
     tipo = models.CharField(max_length=40)
     
     def __str__(self):

@@ -14,8 +14,49 @@
           {% else %}
             <img src="{% static 'app/img/noimagen.jpg' %}">
           {% endif %}
-            <h3>{{ aux.nombre }}</h3>          
+
+          {% if aux.nombre == "Nenufar Blanco" %}
+
+           <p style="color: rgb(255, 91, 91);">20% de descuento</p> 
+
+           <h3>{{ aux.nombre }}</h3>          
+           <h2>$12632 </h2>
+           <p style="text-decoration: line-through; font-size: 18px; " > {{ aux.precio }}  </p>
+          {% elif aux.nombre == "Ficus" %}
+
+          <p style="color: rgb(255, 91, 91);">15% de descuento</p> 
+
+           <h3>{{ aux.nombre }}</h3>          
+           <h2>$29741 </h2>
+           <p style="text-decoration: line-through; font-size: 18px; " > {{ aux.precio }}  </p>
+
+           {% elif aux.nombre == "Planta Carnívora" %}
+
+           <p style="color: rgb(255, 91, 91);">50% de descuento</p> 
+           <h3>{{ aux.nombre }}</h3>          
+           <h2>$25.000 </h2>
+           <p style="text-decoration: line-through; font-size: 18px; " > {{ aux.precio }}  </p>
+
+           {% elif aux.nombre == "Macetero Barril" %}
+
+           <p style="color: rgb(255, 91, 91);">20% de descuento</p> 
+           <h3>{{ aux.nombre }}</h3>          
+           <h2>$22.3120 </h2>
+           <p style="text-decoration: line-through; font-size: 18px; " > {{ aux.precio }}  </p>
+
+           {% elif aux.nombre == "Cedron" %}
+
+           <p style="color: rgb(255, 91, 91);">12% de descuento</p> 
+           <h3>{{ aux.nombre }}</h3>          
+           <h2>$6.990 </h2>
+           <p style="text-decoration: line-through; font-size: 18px; " > {{ aux.precio }}  </p>
+
+           {% else %}
+           <h3>{{ aux.nombre }}</h3>          
             <h6>${{ aux.precio }}</h6>
+
+          {% endif %}
+            
             <button class="buy-1">Agregar al carro</button>
         </div>
         {% endfor %}
