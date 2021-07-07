@@ -14,8 +14,15 @@
           {% else %}
             <img src="{% static 'app/img/noimagen.jpg' %}">
           {% endif %}
-            <h3>{{ aux.nombre }}</h3>          
+            <h10>Stock: {{ aux.stock }} uds.</h10>
+            <h3>{{ aux.nombre }}</h3> 
+            {% if aux.descuento > 0 %}         
+            <h6 style="text-decoration: line-through; font-size: 14px;">${{ aux.precio }}</h6>
+            <h6 style="color: rgb(231, 106, 106); font-size: 20px;">{{ aux.descuento }}% de descuento</h6>
+            <h6 style="color: rgb(255, 91, 91);">${{ aux.calcular_descuento}} </h6>
+            {% else %}
             <h6>${{ aux.precio }}</h6>
+            {% endif %}          
             <td>
                 <div style="margin-bottom: 2%;">  
                     {% if perms.app.change_producto %}

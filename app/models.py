@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 
-class TipoProducto(models.Model): 
+class TipoProducto(models.Model):
     tipo = models.CharField(max_length=40)
     
     def __str__(self):
@@ -16,9 +16,15 @@ class Producto(models.Model):
     descripcion = models.CharField(max_length=60)
     tipo = models.ForeignKey(TipoProducto, on_delete=models.CASCADE)
     fecha = models.DateField()
-    
+    descuento = models.IntegerField()
+    stock = models.IntegerField()
+
     def __str__(self):
         return self.nombre
+    def calcular_descuento(self):
+        if self.descuento > 0:
+            des = round(self.precio - self.precio*(self.descuento/100))
+        return des
 
 consultas = [
     [0, "Consulta"],
