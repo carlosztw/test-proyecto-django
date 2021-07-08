@@ -133,7 +133,7 @@ def registro_usuario(request):
         datos["form"] = formulario   
     return render(request, 'registration/signup.html', datos)
 
-
+@login_required(login_url='/accounts/login/')
 def suscripcion(request):
     datos = {
         'form' : SuscripcionForm()
@@ -146,10 +146,10 @@ def suscripcion(request):
             user = request.user
             user.groups.add(grupo)
             return redirect(to=index)
-        datos["form"] = formulario   
+        datos["form"] = formulario  
     return render(request, 'app/suscripcion.html', datos)
 
-
+@login_required(login_url='/accounts/login/')
 def desuscripcion(request):
     if request.method == 'POST':
         user = request.user
@@ -157,9 +157,6 @@ def desuscripcion(request):
         user.groups.remove(group)
         return render(request, 'app/index.html')
     return render(request, 'app/desuscribirse.html')
-
-
-
 
 
 
@@ -182,3 +179,4 @@ class SuscripcionViewSet(viewsets.ModelViewSet):
 def crear_suscripcion(request):
     form = SuscripcionForm()
     return render(request, 'suscripcion.html',{'form':form})
+

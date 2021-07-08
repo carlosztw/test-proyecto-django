@@ -1,39 +1,56 @@
-{% extends 'app/base.html' %}
-{% load static %}
-{% block contenido %}
+{% extends 'app/base.html' %} {% load static %} {% block contenido %}
 <div class="container-fluid cardfachera">
-    
-    <div class="row">      
+
+    <div class="row">
 
         <!-- CARD DE PRODUCTOS -->
         <div class="gallery">
-          {% for aux in listaProductos %}
-        <div class="content">
-          {% if aux.imagen %}
-            <img src="{{aux.imagen.url}}">
-          {% else %}
-            <img src="{% static 'app/img/noimagen.jpg' %}">
-          {% endif %}
-            <h10>Stock: {{ aux.stock }} uds.</h10>
-            <h3>{{ aux.nombre }}</h3> 
-            {% if aux.descuento > 0 %}         
-            <h6 style="text-decoration: line-through; font-size: 14px;">${{ aux.precio }}</h6>
-            <h6 style="color: rgb(231, 106, 106); font-size: 20px;">{{ aux.descuento }}% de descuento</h6>
-            <h6 style="color: rgb(255, 91, 91);">${{ aux.calcular_descuento}} </h6>
-            {% else %}
-            <h6>${{ aux.precio }}</h6>
-            {% endif %}
-            {% if aux.stock == 0 %}
-            <button style = "background-color: black;" class="buy-1">AGOTADO</button>
-            {% else %}
-            <button class="buy-1">Agregar al carro</button>
-            {% endif %}
+            {% for aux in listaProductos %}
+            <div class="content">
+                {% if aux.imagen %}
+                <img src="{{aux.imagen.url}}"> 
+                {% else %}
+                <img src="{% static 'app/img/noimagen.jpg' %}">
+                {% endif %}
+                <h10>Stock: {{ aux.stock }} uds.</h10>
+                <h3>{{ aux.nombre }}</h3>
+                <!-- DESCUENTO EN GENERAL + EL DESCUENTO DEL SUSCRIPTOR-->
+                {% if aux.descuento > 0 %}
+                <h6 style="text-decoration: line-through; font-size: 14px;"> ${{ aux.precio }}</h6>
+                {% ifequal user.groups.all.0.name "Suscriptor" %}
+                <h6 style="color: rgb(231, 106, 106); font-size: 20px;">{{ aux.descuento_suscriptor }}% de descuento de suscriptor</h6>
+                {% else %}
+                <h6 style="color: rgb(231, 106, 106); font-size: 20px;">{{ aux.descuento }}% de descuento</h6>
+                {% endifequal %} 
+                {% ifequal user.groups.all.0.name "Suscriptor" %}
+                <h6 style="color: rgb(255, 91, 91);">$ {{aux.calcular_descuento_sus}} </h6>
+                {% else %}
+                <h6 style="color: rgb(255, 91, 91);">$ {{ aux.calcular_descuento}} </h6>
+                {% endifequal %} 
+                {% endif %}
+                <!-- DESCUENTOS DEL SUSCRIPTOR (5% en todos los productos) -->
+                {% if aux.descuento == 0 %}
+                {% if user.groups.all.0.name == "Suscriptor" %}
+                <h6 style="text-decoration: line-through; font-size: 14px;"> ${{ aux.precio }}</h6>
+                <h6 style="color: rgb(231, 106, 106); font-size: 20px;">{{ aux.descuento_suscriptor }}% de descuento de suscriptor</h6>
+                <h6 style="color: rgb(255, 91, 91);">$ {{aux.calcular_descuento_sus}} </h6>
+                {% endif %}
+                {% if user.groups.all.0.name != "Suscriptor" %}
+                <h6> ${{ aux.precio }}</h6>
+                {% endif %}
+                {% endif %}
+                {% if aux.stock == 0 %}
+                <button style="background-color: black;" class="buy-1">AGOTADO</button> 
+                {% elif aux.stock == 1 %}
+                <button style="background-color: rgb(179, 16, 16);" class="buy-1">ÚLTIMA UNIDAD</button> 
+                {% else %}
+                <button class="buy-1">Agregar al carro</button> {% endif %}
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-        </div> 
-  </div>
-  <div style="margin-top: 1%; margin-bottom: 1.5%;">
-      {% include 'app/paginator.html' %}
-  </div>
+    </div>
+    <div style="margin-top: 1%; margin-bottom: 1.5%;">
+        {% include 'app/paginator.html' %}
+    </div>
 </div>
 {% endblock %}

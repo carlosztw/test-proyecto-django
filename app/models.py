@@ -1,14 +1,16 @@
 import re
 from django.db import models
+from django.contrib.auth.models import User
+
 
 # Create your models here.
-
+# Clase que representa el tipo (String40) de un Prodcuto
 class TipoProducto(models.Model):
     tipo = models.CharField(max_length=40)
-    
     def __str__(self):
         return self.tipo
 
+#Clase que representa un producto.
 class Producto(models.Model):
     nombre = models.CharField(max_length=40)
     precio = models.IntegerField()
@@ -23,14 +25,18 @@ class Producto(models.Model):
         return self.nombre
     def calcular_descuento(self):
         if self.descuento > 0:
-            des = round(self.precio - self.precio*(self.descuento/100))
+            des = round(self.precio - self.precio*((self.descuento )/100))
         return des
-
-consultas = [
-    [0, "Consulta"],
-    [1, "Reclamo"], 
-    [2, "Felicitaciones"]
-]
+    def calcular_descuento_sus(self):
+        if self.descuento >= 0 :
+            des = round(self.precio - self.precio*((self.descuento + 5 )/100))
+        return des
+    def descuento_suscriptor(self):
+        return self.descuento + 5
+        
+consultas = [[0, "Consulta"],
+            [1, "Reclamo"], 
+            [2, "Felicitaciones"]]
 
 class Contacto(models.Model):
     nombre = models.CharField(max_length=60)
@@ -50,6 +56,7 @@ class Suscriptor(models.Model):
 
     def __str__(self):
         return self.nombre
+
 
 # makemigrations = crea el archivo de las migraciones  (el archivo que se envia a la base de datos ej: 0001_initial.py)  
 # migrate = envia el archivo a la bd
