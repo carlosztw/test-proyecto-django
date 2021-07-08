@@ -1,16 +1,14 @@
 import re
 from django.db import models
 
-
-
 # Create your models here.
-# Clase que representa el tipo (String40) de un Prodcuto
+
 class TipoProducto(models.Model):
     tipo = models.CharField(max_length=40)
+    
     def __str__(self):
         return self.tipo
 
-#Clase que representa un producto.
 class Producto(models.Model):
     nombre = models.CharField(max_length=40)
     precio = models.IntegerField()
@@ -27,10 +25,12 @@ class Producto(models.Model):
         if self.descuento > 0:
             des = round(self.precio - self.precio*(self.descuento/100))
         return des
-        
-consultas = [[0, "Consulta"],
-            [1, "Reclamo"], 
-            [2, "Felicitaciones"]]
+
+consultas = [
+    [0, "Consulta"],
+    [1, "Reclamo"], 
+    [2, "Felicitaciones"]
+]
 
 class Contacto(models.Model):
     nombre = models.CharField(max_length=60)

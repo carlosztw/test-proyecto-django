@@ -18,7 +18,7 @@ class ProductoForm(ModelForm):
     imagen = forms.ImageField(required=False, validators=[MaxSizeFileValidator(max_file_size=2)])
     descuento = forms.IntegerField(min_value=0, max_value=90)
     stock =  forms.IntegerField(min_value=0)
-    
+
     def clean_nombre(self):
         nombre = self.cleaned_data["nombre"]
         existe = Producto.objects.filter(nombre__iexact=nombre)
@@ -28,11 +28,12 @@ class ProductoForm(ModelForm):
         if existe.exists():
             raise ValidationError("Este nombre ya existe")
 
-        return nombre    
+        return nombre   
 
     class Meta:
         model = Producto
         fields = ['nombre','precio', 'imagen','descripcion','tipo', 'fecha', 'descuento', 'stock']
+
         widgets = {
             'fecha': forms.SelectDateWidget(years=range(2015, 2030))
         }
