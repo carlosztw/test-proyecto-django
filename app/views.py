@@ -12,6 +12,9 @@ from rest_framework.response import Response
 from app import serializers
 from app import models
 from rest_framework import viewsets
+from django.contrib.auth.models import Group
+
+
 
 # Create your views here.
 def index(request):
@@ -25,6 +28,8 @@ def quienessomos(request):
 
 def contacto(request):
     return render(request, 'app/contacto.html')    
+
+
 
 def contacto(request):
     datos = {
@@ -133,17 +138,29 @@ def suscripcion(request):
     datos = {
         'form' : SuscripcionForm()
     }
-
     if request.method == 'POST':
         formulario = SuscripcionForm(request.POST)
         if formulario.is_valid():
             formulario.save()
+            grupo = Group.objects.get(name='Suscriptor')
+            user = request.user
+            user.groups.add(grupo)
             return redirect(to=index)
         datos["form"] = formulario   
     return render(request, 'app/suscripcion.html', datos)
 
 
-    return render(request, 'app/suscripcion.html')    
+def desuscripcion(request):
+    if request.method == 'POST':
+        user = request.user
+        group = Group.objects.get(name='Suscriptor') 
+        user.groups.remove(group)
+        return render(request, 'app/index.html')
+    return render(request, 'app/desuscribirse.html')
+
+
+
+
 
 
 class SuscripcionViewSet(viewsets.ModelViewSet):

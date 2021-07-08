@@ -1,0 +1,8 @@
+{% extends 'app/base.html' %} {% load static %} {% load crispy_forms_tags %} {% block contenido %}
+
+<form action="" method="POST">
+    {% csrf_token %} {{ form | crispy }}
+    <div class="text-center" style="margin-top: 6%; margin-bottom: 3%;">
+        <button type="submit" class="btn" style="background-color: green; color: white;">Desuscribirse</button>
+    </div>
+    {% endblock %}

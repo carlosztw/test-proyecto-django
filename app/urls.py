@@ -23,7 +23,8 @@ urlpatterns = [
     path('modificar-productos/', modificar, name="modificar"),
     path('accounts/', include('django.contrib.auth.urls')),
     path('registrousuario/', registro_usuario, name="registro_usuario" ),
-    path('suscripcion/', suscripcion, name="suscripcion" ),
+    path('suscripcion/', suscripcion, name="suscripcion") ,
+    path('desuscripcion/', desuscripcion, name="desuscripcion" ),
     path('', include('pwa.urls')),
     path('',include(router.urls)),
 

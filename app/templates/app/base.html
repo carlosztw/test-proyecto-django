@@ -63,11 +63,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'modificar' %} " style="color: white;">Modificar productos</a>
                 </li>
-                {% endif %} {% if user.is_authenticated %}
+                {% endif %} {% ifequal user.groups.all.0.name "Suscriptor" %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'desuscripcion' %} " style="color: white;">Desuscribirse</a>
+                </li>
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'suscripcion' %} " style="color: white;">Suscribirse</a>
-                </li>
-                {% endif %}
+                </li>- {% endifequal %}
 
             </ul>
             <!-- BOTON CON INICIAR SESION / REGISTRARSE -->
